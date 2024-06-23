@@ -5,11 +5,11 @@
 ***
 # Getting Started
 ## How to use
-#### Head to [Releases] to download.
+#### Head to [Releases](https://github.com/menvae/Send-Video-as-Discord-Emojis/releases) to download.
 
 if you're using python install `requirements.txt` with pip:
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 ##### Paste your Discord Bot token inside `token.txt`
 

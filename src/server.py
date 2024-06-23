@@ -15,6 +15,8 @@ token = read_token()
 async def start(channel_id: int, message_id: int,
                 file: AnyStr, action: int, loop: bool, mode: int = 0, interval: float = 1.0) -> None:
 
+    loop = loop
+
     action = action
 
     session = ClientSession()
@@ -27,6 +29,7 @@ async def start(channel_id: int, message_id: int,
         width, height, fps = params.split(' ')
 
         first_frame = True
+        line = "l"
 
         delay = 1 / int(fps)
 
@@ -34,6 +37,7 @@ async def start(channel_id: int, message_id: int,
             delay = float(interval)
 
         while True:
+            print(loop)
 
             render = []
 
@@ -41,14 +45,18 @@ async def start(channel_id: int, message_id: int,
                 frame = int(file.readline())
                 first_frame = False
 
-            print(frame)
-
             while True:
-                line = file.readline()
-                if line == "end" and loop is True:
+                if (line is None or line == '') and loop is True:
+                    print("\nWOWOWOWOW\n")
                     file.seek(0)
-                    first_frame = True
                     file.readline()
+                    frame = int(file.readline())
+                elif (line is None or line == '') and loop is False:
+                    exit()
+
+                line = file.readline()
+                print(line)
+
                 try:
                     frame = int(line)
                     break
@@ -78,7 +86,3 @@ def run_background(channel_id: int, message_id: int, file: AnyStr, action: int, 
     process = Process(target=run, args=(channel_id, message_id, file, action, loop, mode, interval))
     Process.daemon = False
     process.start()
-
-
-if __name__ == '__main__':
-    run(1122621899487313920, 1253190402509508608, "out\\badoople.vtd", 1, False)

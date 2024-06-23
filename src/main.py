@@ -1,4 +1,4 @@
-from server import run_background, run
+from server import run
 from Client import InvalidToken
 from customtkinter import *
 from tkinter import messagebox
@@ -64,6 +64,7 @@ def loop_select() -> None:
     value = int(LoopSwitch.get())
     if value == 1:
         loop = True
+        print(loop)
         return
     loop = False
 
@@ -144,7 +145,8 @@ MainFrame = CTkFrame(root, width=WINDOW_WIDTH - 50, height=WINDOW_HEIGHT - 50, c
 OptionsMenu = CTkSegmentedButton(MainFrame, values=['Send only', 'Send then edit', 'Edit only'], font=EntryFont,
                                  selected_color="#65A686", selected_hover_color="#568D72", command=option_select)
 OptionsMenu.set('Send only')
-LoopSwitch = CTkSwitch(MainFrame, font=EntryFont, text="loop", fg_color=WINDOW_COLOR, progress_color="#65A686")
+LoopSwitch = CTkSwitch(MainFrame, font=EntryFont, text="loop", fg_color=WINDOW_COLOR, progress_color="#65A686",
+                       command=lambda: loop_select())
 
 SendEvery = CTkCheckBox(MainFrame, text="Send every", font=EntryFont, hover_color="#65A686", fg_color="#65A686",
                         command=lambda: checkbox_select())

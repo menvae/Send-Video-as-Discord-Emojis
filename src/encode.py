@@ -197,11 +197,3 @@ def encode(width: int, height: int, contrast: float, brightness: float, fps: int
     status = "rendering"
     render_all()
     status = "Done!"
-
-
-if __name__ == '__main__':
-    encode(40, 30, 1, 0, 2, False, "D:\\Downloads\\y2mate.com - 東方Bad Apple ＰＶ影絵_360p.mp4",
-           "D:\\code\\Python Projects\\bad apple discord\\out", "badoople")
-
-    # encode(1000, 500, 1.5, 0, 24, "D:\\Downloads\\y2mate.com - 東方Bad Apple ＰＶ影絵_360p.mp4",
-    #        "D:\\code\\Python Projects\\bad apple discord\\out", "badoople", 0, 0)
